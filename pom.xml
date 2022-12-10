@@ -1,0 +1,94 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.0</version>
+  </parent>
+
+  <groupId>org.gershaw</groupId>
+  <artifactId>parent</artifactId>
+  <version>0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <java.version>17</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <repository-owner>ggershaw</repository-owner>
+    <repository-name>Examples</repository-name>
+    <branch-name>master</branch-name>
+    <github.global.server>github</github.global.server>
+    <jasypt.version>3.0.4</jasypt.version>
+    <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
+    <quickfixj.version>2.3.1</quickfixj.version>
+  </properties>
+
+  <modules>
+    <module>quickfixj</module>
+    <module>collections</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>${javax.annotation-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.ulisesbocchio</groupId>
+        <artifactId>jasypt-spring-boot-starter</artifactId>
+        <version>${jasypt.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.quickfixj</groupId>
+        <artifactId>quickfixj-all</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+    </dependency>
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <excludes>
+          <exclude>
+            <artifactId>lombok</artifactId>
+            <groupId>org.projectlombok</groupId>
+          </exclude>
+        </excludes>
+        <skip>true</skip>
+      </configuration>
+      <groupId>org.springframework.boot</groupId>
+    </plugin>
+        <plugin>
+          <groupId>com.github.ulisesbocchio</groupId>
+          <artifactId>jasypt-maven-plugin</artifactId>
+          <version>${jasypt.version}</version>
+        </plugin>
+    </plugins>
+  </build>
+</project>
